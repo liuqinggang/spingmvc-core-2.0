@@ -49,7 +49,7 @@ public class BaseController {
 
     /**
      * 封装Json返回信息
-     * 
+     *
      * @param success
      *            是否操作成功
      * @param message
@@ -57,11 +57,14 @@ public class BaseController {
      * @param entity
      *            返回数据时实体
      */
-    public void setJson(boolean success, String message, Object entity) {
+    public Map<String, Object> getJsonMap(boolean success, String message, Object entity) {
+        Map<String, Object> json = new HashMap<String, Object>(4);
         json.put("success", success);
         json.put("message", message);
         json.put("entity", entity);
+        return  json;
     }
+
 
     // 绑定变量名字和属性，参数封装进类
     @InitBinder("page")
