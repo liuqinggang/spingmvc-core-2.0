@@ -662,32 +662,7 @@ public class WebUtils {
      * @param  contextPath 项目路径
      */
     public static boolean isdomainok(String contextPath,String securityKey,String domiankey){
-        try {
-            if(contextPath.indexOf("127.0.")>-1 ||contextPath.indexOf("192.168.")>-1  ){
-                return true;
-            }
-            String dedomaininfo=PurseSecurityUtils.decryption(domiankey,securityKey);
-            Gson gson = new Gson();
-            JsonParser jsonParser = new JsonParser();
-            JsonObject jsonObject  = jsonParser.parse(dedomaininfo).getAsJsonObject();
-            Map<String, String> map = gson.fromJson( jsonObject, new TypeToken<Map<String, String>>() {}.getType());
-            String domain=map.get("domain");
-            if(contextPath.indexOf(domain)<0){
-                System.exit(2);
-                return false;
-            }
-            String dt =map.get("dt");
-            if(com.yizhilu.os.core.util.StringUtils.isNotEmpty(dt)){
-               Date t = DateUtils.toDate(dt,"yyyy-MM-dd");
-                if(t.compareTo(new Date())<0){
-                  System.exit(3);
-                    return false;
-                }
-            }
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return true;
     }
     /**
      * 长度补冲，前面加0
